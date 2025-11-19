@@ -1,0 +1,6 @@
+// Remove the duplicate AppData class definition at the bottom of frmCalculateDynamicLandmarks.cs
+// and add this using statement at the top instead:
+// using SpineAnalyzer.Common;
+
+// The centralized AppData class in SpineAnalyzer.Common namespace will be used instead
+// This eliminates the duplicate class definition and provides a single source of truth

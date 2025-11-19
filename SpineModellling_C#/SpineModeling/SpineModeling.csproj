@@ -1,0 +1,1429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ED309C49-62B2-40E7-9018-4AD37CAF1A8E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SpineModeling</RootNamespace>
+    <AssemblyName>SpineModeling</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accord, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.3.8.0\lib\net462\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Controls, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Controls.3.8.0\lib\net462\Accord.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Controls.Imaging, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Controls.Imaging.3.8.0\lib\net462\Accord.Controls.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Imaging, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Imaging.3.8.0\lib\net462\Accord.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.MachineLearning, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.MachineLearning.3.8.0\lib\net462\Accord.MachineLearning.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net462\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net462\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net462\Accord.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Video, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Video.3.8.0\lib\net462\Accord.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.105.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.105.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML.Parser, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1d5f7376574c51ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.Parser.2.0.0\lib\netstandard2.0\ClosedXML.Parser.dll</HintPath>
+    </Reference>
+    <Reference Include="CommunityToolkit.HighPerformance, Version=8.3.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommunityToolkit.HighPerformance.8.3.2\lib\netstandard2.0\CommunityToolkit.HighPerformance.dll</HintPath>
+    </Reference>
+    <Reference Include="dicomcs, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\dicom-cs.0.4.0\lib\netstandard2.0\dicomcs.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.3.1.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.1.1\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV, Version=4.11.0.5746, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\Emgu.CV.4.11.0.5746\lib\netstandard2.0\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.Bitmap, Version=4.11.0.5746, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\Emgu.CV.Bitmap.4.11.0.5746\lib\netstandard2.0\Emgu.CV.Bitmap.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=4.11.0.5746, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\Emgu.CV.UI.4.11.0.5746\lib\netstandard2.0\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EvilDICOM, Version=3.0.8998.340, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EvilDICOM.3.0.8998.340\lib\net472\EvilDICOM.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="fo-dicom.core, Version=5.2.2.0, Culture=neutral, PublicKeyToken=3a13f649e28eb09a, processorArchitecture=MSIL">
+      <HintPath>..\packages\fo-dicom.5.2.2\lib\netstandard2.0\fo-dicom.core.dll</HintPath>
+    </Reference>
+    <Reference Include="geometry3Sharp, Version=1.0.324.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\geometry3Sharp.1.0.324\lib\net45\geometry3Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.mummy.Runtime, Version=1.0.2.599, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=AMD64">
+      <HintPath>..\packages\Activiz.NET.x64.5.8.0\lib\net20\Kitware.mummy.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.VTK, Version=5.8.0.607, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=AMD64">
+      <HintPath>..\packages\Activiz.NET.x64.5.8.0\lib\net20\Kitware.VTK.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.8.0.0\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.8.0.0\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs">
+      <HintPath>..\packages\Other\Ookii.Dialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.WinForms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ookii.Dialogs.WinForms.4.0.0\lib\net462\Ookii.Dialogs.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ookii.Dialogs.Wpf.5.0.1\lib\net462\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.1.1.2225.0\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.GLControl.1.1.2225.0\lib\net20\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c77e27b81f4d0187, processorArchitecture=MSIL">
+      <HintPath>..\packages\RBush.Signed.4.0.0\lib\net47\RBush.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleITKCSharpManaged, Version=0.9.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\SimpleITK-64bit.0.9.0\lib\net45\SimpleITKCSharpManaged.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.9.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.9.0.0\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Primitives.4.3.0\lib\net45\System.Drawing.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Formats.Nrbf, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Nrbf.9.0.0\lib\net462\System.Formats.Nrbf.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.9.0.0\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.9.0.0\lib\net462\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.Extensions, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Resources.Extensions.9.0.0\lib\net462\System.Resources.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.6.0.1\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.9.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.9.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.6.0.0\lib\net461\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\AppData.cs" />
+    <Compile Include="Common\DataBase.cs" />
+    <Compile Include="Common\DatabaseSetup.cs" />
+    <Compile Include="CSharpOpenSim\AbstractProperty.cs" />
+    <Compile Include="CSharpOpenSim\AbstractTool.cs" />
+    <Compile Include="CSharpOpenSim\ActivationFiberLengthMuscle.cs" />
+    <Compile Include="CSharpOpenSim\ActiveForceLengthCurve.cs" />
+    <Compile Include="CSharpOpenSim\Actuation.cs" />
+    <Compile Include="CSharpOpenSim\Actuator.cs" />
+    <Compile Include="CSharpOpenSim\ActuatorForceProbe.cs" />
+    <Compile Include="CSharpOpenSim\ActuatorPowerProbe.cs" />
+    <Compile Include="CSharpOpenSim\Actuator_.cs" />
+    <Compile Include="CSharpOpenSim\Analysis.cs" />
+    <Compile Include="CSharpOpenSim\AnalysisSet.cs" />
+    <Compile Include="CSharpOpenSim\AnalysisWrapper.cs" />
+    <Compile Include="CSharpOpenSim\AnalyticCylinder.cs" />
+    <Compile Include="CSharpOpenSim\AnalyticEllipsoid.cs" />
+    <Compile Include="CSharpOpenSim\AnalyticGeometry.cs" />
+    <Compile Include="CSharpOpenSim\AnalyticSphere.cs" />
+    <Compile Include="CSharpOpenSim\AnalyticTorus.cs" />
+    <Compile Include="CSharpOpenSim\AnalyzeTool.cs" />
+    <Compile Include="CSharpOpenSim\ArrayBool.cs" />
+    <Compile Include="CSharpOpenSim\ArrayCoordinateReference.cs" />
+    <Compile Include="CSharpOpenSim\ArrayDecorativeGeometry.cs" />
+    <Compile Include="CSharpOpenSim\ArrayDouble.cs" />
+    <Compile Include="CSharpOpenSim\ArrayIndexInt.cs" />
+    <Compile Include="CSharpOpenSim\ArrayIndexUnsigned.cs" />
+    <Compile Include="CSharpOpenSim\ArrayInt.cs" />
+    <Compile Include="CSharpOpenSim\ArrayObjPtr.cs" />
+    <Compile Include="CSharpOpenSim\ArrayPathPoint.cs" />
+    <Compile Include="CSharpOpenSim\ArrayPointForceDirection.cs" />
+    <Compile Include="CSharpOpenSim\ArrayPtrsObj.cs" />
+    <Compile Include="CSharpOpenSim\ArrayPtrsPropertyGroup.cs" />
+    <Compile Include="CSharpOpenSim\ArrayStorage.cs" />
+    <Compile Include="CSharpOpenSim\ArrayStr.cs" />
+    <Compile Include="CSharpOpenSim\ArrayXYPoint.cs" />
+    <Compile Include="CSharpOpenSim\ArrowGeometry.cs" />
+    <Compile Include="CSharpOpenSim\AssemblySolver.cs" />
+    <Compile Include="CSharpOpenSim\BallJoint.cs" />
+    <Compile Include="CSharpOpenSim\Bhargava2004MuscleMetabolicsProbe.cs" />
+    <Compile Include="CSharpOpenSim\Bhargava2004MuscleMetabolicsProbe_MetabolicMuscleParameter.cs" />
+    <Compile Include="CSharpOpenSim\Bhargava2004MuscleMetabolicsProbe_MetabolicMuscleParameterSet.cs" />
+    <Compile Include="CSharpOpenSim\Body.cs" />
+    <Compile Include="CSharpOpenSim\BodyKinematics.cs" />
+    <Compile Include="CSharpOpenSim\BodyOrSpaceType.cs" />
+    <Compile Include="CSharpOpenSim\BodyScale.cs" />
+    <Compile Include="CSharpOpenSim\BodyScaleSet.cs" />
+    <Compile Include="CSharpOpenSim\BodySet.cs" />
+    <Compile Include="CSharpOpenSim\BushingForce.cs" />
+    <Compile Include="CSharpOpenSim\ClutchedPathSpring.cs" />
+    <Compile Include="CSharpOpenSim\CMCTool.cs" />
+    <Compile Include="CSharpOpenSim\CMC_Joint.cs" />
+    <Compile Include="CSharpOpenSim\CMC_Point.cs" />
+    <Compile Include="CSharpOpenSim\CMC_Task.cs" />
+    <Compile Include="CSharpOpenSim\CMC_TaskSet.cs" />
+    <Compile Include="CSharpOpenSim\ComponentSet.cs" />
+    <Compile Include="CSharpOpenSim\ConditionalPathPoint.cs" />
+    <Compile Include="CSharpOpenSim\Constant.cs" />
+    <Compile Include="CSharpOpenSim\ConstantDistanceConstraint.cs" />
+    <Compile Include="CSharpOpenSim\Constraint.cs" />
+    <Compile Include="CSharpOpenSim\ConstraintSet.cs" />
+    <Compile Include="CSharpOpenSim\ContactGeometry.cs" />
+    <Compile Include="CSharpOpenSim\ContactGeometrySet.cs" />
+    <Compile Include="CSharpOpenSim\ContactHalfSpace.cs" />
+    <Compile Include="CSharpOpenSim\ContactMesh.cs" />
+    <Compile Include="CSharpOpenSim\ContactSphere.cs" />
+    <Compile Include="CSharpOpenSim\Control.cs" />
+    <Compile Include="CSharpOpenSim\ControlConstant.cs" />
+    <Compile Include="CSharpOpenSim\Controller.cs" />
+    <Compile Include="CSharpOpenSim\ControllerSet.cs" />
+    <Compile Include="CSharpOpenSim\ControlLinear.cs" />
+    <Compile Include="CSharpOpenSim\ControlLinearNode.cs" />
+    <Compile Include="CSharpOpenSim\ControlSet.cs" />
+    <Compile Include="CSharpOpenSim\Coordinate.cs" />
+    <Compile Include="CSharpOpenSim\CoordinateActuator.cs" />
+    <Compile Include="CSharpOpenSim\CoordinateAxis.cs" />
+    <Compile Include="CSharpOpenSim\CoordinateCouplerConstraint.cs" />
+    <Compile Include="CSharpOpenSim\CoordinateDirection.cs" />
+    <Compile Include="CSharpOpenSim\CoordinateLimitForce.cs" />
+    <Compile Include="CSharpOpenSim\CoordinateReference.cs" />
+    <Compile Include="CSharpOpenSim\CoordinateSet.cs" />
+    <Compile Include="CSharpOpenSim\CSharpWrapOpenSim.cs" />
+    <Compile Include="CSharpOpenSim\CSharpWrapOpenSimPINVOKE.cs" />
+    <Compile Include="CSharpOpenSim\CustomJoint.cs" />
+    <Compile Include="CSharpOpenSim\Decorations.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeBrick.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeCircle.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeCylinder.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeEllipsoid.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeFrame.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeGeometry.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeGeometryImplementation.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeLine.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeMesh.cs" />
+    <Compile Include="CSharpOpenSim\DecorativePoint.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeSphere.cs" />
+    <Compile Include="CSharpOpenSim\DecorativeText.cs" />
+    <Compile Include="CSharpOpenSim\DisplayGeometry.cs" />
+    <Compile Include="CSharpOpenSim\DontCopy.cs" />
+    <Compile Include="CSharpOpenSim\DynamicsTool.cs" />
+    <Compile Include="CSharpOpenSim\ElasticFoundationForce.cs" />
+    <Compile Include="CSharpOpenSim\EllipsoidJoint.cs" />
+    <Compile Include="CSharpOpenSim\ExpressionBasedBushingForce.cs" />
+    <Compile Include="CSharpOpenSim\ExpressionBasedCoordinateForce.cs" />
+    <Compile Include="CSharpOpenSim\ExpressionBasedPointToPointForce.cs" />
+    <Compile Include="CSharpOpenSim\ExternalForce.cs" />
+    <Compile Include="CSharpOpenSim\ExternalLoads.cs" />
+    <Compile Include="CSharpOpenSim\FalseType.cs" />
+    <Compile Include="CSharpOpenSim\FiberCompressiveForceCosPennationCurve.cs" />
+    <Compile Include="CSharpOpenSim\FiberCompressiveForceLengthCurve.cs" />
+    <Compile Include="CSharpOpenSim\FiberForceLengthCurve.cs" />
+    <Compile Include="CSharpOpenSim\Force.cs" />
+    <Compile Include="CSharpOpenSim\ForceReporter.cs" />
+    <Compile Include="CSharpOpenSim\ForceSet.cs" />
+    <Compile Include="CSharpOpenSim\ForceVelocityCurve.cs" />
+    <Compile Include="CSharpOpenSim\ForceVelocityInverseCurve.cs" />
+    <Compile Include="CSharpOpenSim\ForwardTool.cs" />
+    <Compile Include="CSharpOpenSim\FreeJoint.cs" />
+    <Compile Include="CSharpOpenSim\Function.cs" />
+    <Compile Include="CSharpOpenSim\FunctionBasedBushingForce.cs" />
+    <Compile Include="CSharpOpenSim\FunctionSet.cs" />
+    <Compile Include="CSharpOpenSim\GCVSpline.cs" />
+    <Compile Include="CSharpOpenSim\GenericModelMaker.cs" />
+    <Compile Include="CSharpOpenSim\Geometry.cs" />
+    <Compile Include="CSharpOpenSim\GeometryPath.cs" />
+    <Compile Include="CSharpOpenSim\GeometrySet.cs" />
+    <Compile Include="CSharpOpenSim\GimbalJoint.cs" />
+    <Compile Include="CSharpOpenSim\HuntCrossleyForce.cs" />
+    <Compile Include="CSharpOpenSim\IKCoordinateTask.cs" />
+    <Compile Include="CSharpOpenSim\IKMarkerTask.cs" />
+    <Compile Include="CSharpOpenSim\IKTask.cs" />
+    <Compile Include="CSharpOpenSim\IKTaskSet.cs" />
+    <Compile Include="CSharpOpenSim\InducedAccelerations.cs" />
+    <Compile Include="CSharpOpenSim\Inertia.cs" />
+    <Compile Include="CSharpOpenSim\InterruptCallback.cs" />
+    <Compile Include="CSharpOpenSim\InverseDynamics.cs" />
+    <Compile Include="CSharpOpenSim\InverseDynamicsSolver.cs" />
+    <Compile Include="CSharpOpenSim\InverseDynamicsTool.cs" />
+    <Compile Include="CSharpOpenSim\InverseKinematicsSolver.cs" />
+    <Compile Include="CSharpOpenSim\InverseKinematicsTool.cs" />
+    <Compile Include="CSharpOpenSim\InverseRotation.cs" />
+    <Compile Include="CSharpOpenSim\IO.cs" />
+    <Compile Include="CSharpOpenSim\Joint.cs" />
+    <Compile Include="CSharpOpenSim\JointInternalPowerProbe.cs" />
+    <Compile Include="CSharpOpenSim\JointReaction.cs" />
+    <Compile Include="CSharpOpenSim\JointSet.cs" />
+    <Compile Include="CSharpOpenSim\Kinematics.cs" />
+    <Compile Include="CSharpOpenSim\Ligament.cs" />
+    <Compile Include="CSharpOpenSim\LinearFunction.cs" />
+    <Compile Include="CSharpOpenSim\LineGeometry.cs" />
+    <Compile Include="CSharpOpenSim\Manager.cs" />
+    <Compile Include="CSharpOpenSim\Marker.cs" />
+    <Compile Include="CSharpOpenSim\MarkerData.cs" />
+    <Compile Include="CSharpOpenSim\MarkerFrame.cs" />
+    <Compile Include="CSharpOpenSim\MarkerPair.cs" />
+    <Compile Include="CSharpOpenSim\MarkerPairSet.cs" />
+    <Compile Include="CSharpOpenSim\MarkerPlacer.cs" />
+    <Compile Include="CSharpOpenSim\MarkerSet.cs" />
+    <Compile Include="CSharpOpenSim\MarkersReference.cs" />
+    <Compile Include="CSharpOpenSim\MarkerWeight.cs" />
+    <Compile Include="CSharpOpenSim\MassProperties.cs" />
+    <Compile Include="CSharpOpenSim\Mat33.cs" />
+    <Compile Include="CSharpOpenSim\Matrix.cs" />
+    <Compile Include="CSharpOpenSim\MatrixBaseDouble.cs" />
+    <Compile Include="CSharpOpenSim\Measurement.cs" />
+    <Compile Include="CSharpOpenSim\MeasurementSet.cs" />
+    <Compile Include="CSharpOpenSim\Millard2012AccelerationMuscle.cs" />
+    <Compile Include="CSharpOpenSim\Millard2012EquilibriumMuscle.cs" />
+    <Compile Include="CSharpOpenSim\Model.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponent.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetBodies.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetConstraints.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetContactGeometry.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetControllers.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetCoordinates.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetExternalForces.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetForces.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetJoints.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetModelComponent.cs" />
+    <Compile Include="CSharpOpenSim\ModelComponentSetProbes.cs" />
+    <Compile Include="CSharpOpenSim\ModelDisplayHints.cs" />
+    <Compile Include="CSharpOpenSim\ModelScaler.cs" />
+    <Compile Include="CSharpOpenSim\ModelVisualizer.cs" />
+    <Compile Include="CSharpOpenSim\MomentArmSolver.cs" />
+    <Compile Include="CSharpOpenSim\MovingPathPoint.cs" />
+    <Compile Include="CSharpOpenSim\MultiplierFunction.cs" />
+    <Compile Include="CSharpOpenSim\Muscle.cs" />
+    <Compile Include="CSharpOpenSim\MuscleActiveFiberPowerProbe.cs" />
+    <Compile Include="CSharpOpenSim\MuscleAnalysis.cs" />
+    <Compile Include="CSharpOpenSim\MuscleFirstOrderActivationDynamicModel.cs" />
+    <Compile Include="CSharpOpenSim\MuscleFixedWidthPennationModel.cs" />
+    <Compile Include="CSharpOpenSim\ObjectGroup.cs" />
+    <Compile Include="CSharpOpenSim\OpenSimContext.cs" />
+    <Compile Include="CSharpOpenSim\OpenSimException.cs" />
+    <Compile Include="CSharpOpenSim\OpenSimJavaObject.cs" />
+    <Compile Include="CSharpOpenSim\OpenSimObject.cs" />
+    <Compile Include="CSharpOpenSim\PathActuator.cs" />
+    <Compile Include="CSharpOpenSim\PathPoint.cs" />
+    <Compile Include="CSharpOpenSim\PathPointSet.cs" />
+    <Compile Include="CSharpOpenSim\PathSpring.cs" />
+    <Compile Include="CSharpOpenSim\PathWrap.cs" />
+    <Compile Include="CSharpOpenSim\PathWrapPoint.cs" />
+    <Compile Include="CSharpOpenSim\PathWrapSet.cs" />
+    <Compile Include="CSharpOpenSim\PiecewiseConstantFunction.cs" />
+    <Compile Include="CSharpOpenSim\PiecewiseLinearFunction.cs" />
+    <Compile Include="CSharpOpenSim\PinJoint.cs" />
+    <Compile Include="CSharpOpenSim\PlanarJoint.cs" />
+    <Compile Include="CSharpOpenSim\PointActuator.cs" />
+    <Compile Include="CSharpOpenSim\PointConstraint.cs" />
+    <Compile Include="CSharpOpenSim\PointForceDirection.cs" />
+    <Compile Include="CSharpOpenSim\PointKinematics.cs" />
+    <Compile Include="CSharpOpenSim\PointOnLineConstraint.cs" />
+    <Compile Include="CSharpOpenSim\PointToPointActuator.cs" />
+    <Compile Include="CSharpOpenSim\PointToPointSpring.cs" />
+    <Compile Include="CSharpOpenSim\PolyhedralGeometry.cs" />
+    <Compile Include="CSharpOpenSim\PolynomialFunction.cs" />
+    <Compile Include="CSharpOpenSim\PrescribedController.cs" />
+    <Compile Include="CSharpOpenSim\PrescribedForce.cs" />
+    <Compile Include="CSharpOpenSim\Probe.cs" />
+    <Compile Include="CSharpOpenSim\ProbeReporter.cs" />
+    <Compile Include="CSharpOpenSim\ProbeSet.cs" />
+    <Compile Include="CSharpOpenSim\PropertyGroup.cs" />
+    <Compile Include="CSharpOpenSim\PropertyHelper.cs" />
+    <Compile Include="CSharpOpenSim\ReferenceDouble.cs" />
+    <Compile Include="CSharpOpenSim\ReferenceVec3.cs" />
+    <Compile Include="CSharpOpenSim\RigidTendonMuscle.cs" />
+    <Compile Include="CSharpOpenSim\Rotation.cs" />
+    <Compile Include="CSharpOpenSim\RRATool.cs" />
+    <Compile Include="CSharpOpenSim\Scale.cs" />
+    <Compile Include="CSharpOpenSim\ScaleSet.cs" />
+    <Compile Include="CSharpOpenSim\ScaleTool.cs" />
+    <Compile Include="CSharpOpenSim\Segment.cs" />
+    <Compile Include="CSharpOpenSim\SetActuators.cs" />
+    <Compile Include="CSharpOpenSim\SetAnalysis.cs" />
+    <Compile Include="CSharpOpenSim\SetBodies.cs" />
+    <Compile Include="CSharpOpenSim\SetBodyScales.cs" />
+    <Compile Include="CSharpOpenSim\SetConstraints.cs" />
+    <Compile Include="CSharpOpenSim\SetContactGeometry.cs" />
+    <Compile Include="CSharpOpenSim\SetControllers.cs" />
+    <Compile Include="CSharpOpenSim\SetControlNodes.cs" />
+    <Compile Include="CSharpOpenSim\SetControls.cs" />
+    <Compile Include="CSharpOpenSim\SetCoordinates.cs" />
+    <Compile Include="CSharpOpenSim\SetExternalForces.cs" />
+    <Compile Include="CSharpOpenSim\SetForces.cs" />
+    <Compile Include="CSharpOpenSim\SetFunctions.cs" />
+    <Compile Include="CSharpOpenSim\SetGeometry.cs" />
+    <Compile Include="CSharpOpenSim\SetIKTasks.cs" />
+    <Compile Include="CSharpOpenSim\SetJoints.cs" />
+    <Compile Include="CSharpOpenSim\SetMarkerPairs.cs" />
+    <Compile Include="CSharpOpenSim\SetMarkers.cs" />
+    <Compile Include="CSharpOpenSim\SetMarkerWeights.cs" />
+    <Compile Include="CSharpOpenSim\SetMeasurements.cs" />
+    <Compile Include="CSharpOpenSim\SetModelComponents.cs" />
+    <Compile Include="CSharpOpenSim\SetMuscles.cs" />
+    <Compile Include="CSharpOpenSim\SetPathPoint.cs" />
+    <Compile Include="CSharpOpenSim\SetPathWrap.cs" />
+    <Compile Include="CSharpOpenSim\SetProbes.cs" />
+    <Compile Include="CSharpOpenSim\SetScales.cs" />
+    <Compile Include="CSharpOpenSim\SetTrackingTasks.cs" />
+    <Compile Include="CSharpOpenSim\SetWrapObject.cs" />
+    <Compile Include="CSharpOpenSim\SimbodyEngine.cs" />
+    <Compile Include="CSharpOpenSim\SimmSpline.cs" />
+    <Compile Include="CSharpOpenSim\SimTKArrayDouble.cs" />
+    <Compile Include="CSharpOpenSim\SimTKArrayVec3.cs" />
+    <Compile Include="CSharpOpenSim\Sine.cs" />
+    <Compile Include="CSharpOpenSim\SliderJoint.cs" />
+    <Compile Include="CSharpOpenSim\SmoothSegmentedFunction.cs" />
+    <Compile Include="CSharpOpenSim\SmoothSegmentedFunctionFactory.cs" />
+    <Compile Include="CSharpOpenSim\Solver.cs" />
+    <Compile Include="CSharpOpenSim\SpatialTransform.cs" />
+    <Compile Include="CSharpOpenSim\SpatialVec.cs" />
+    <Compile Include="CSharpOpenSim\SpringGeneralizedForce.cs" />
+    <Compile Include="CSharpOpenSim\Stage.cs" />
+    <Compile Include="CSharpOpenSim\State.cs" />
+    <Compile Include="CSharpOpenSim\StatesReporter.cs" />
+    <Compile Include="CSharpOpenSim\StateVector.cs" />
+    <Compile Include="CSharpOpenSim\StaticOptimization.cs" />
+    <Compile Include="CSharpOpenSim\StepFunction.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_a_3__double.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_bool.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_double.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_int.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_MarkerWeight.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_MuscleFirstOrderActivationDynamicModel.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_MuscleFixedWidthPennationModel.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__ArrayT_SimTK__VecT_3_double_1_t_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__ElasticFoundationForce__ContactParameters.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__ElasticFoundationForce__ContactParametersSet.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__HuntCrossleyForce__ContactParameters.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__HuntCrossleyForce__ContactParametersSet.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__PropertyT_std__string_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__SetT_OpenSim__MarkerWeight_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__Storage.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_OpenSim__WrapResult.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_PathWrapPoint.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_PolygonalMesh.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_PropertySet.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_Property_Deprecated.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_p_OpenSim__Storage.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__Array_T_int_unsigned_int_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__Array_T_std__string_unsigned_int_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__ContactGeometry.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__DefaultGeometry.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__DefaultSystemSubsystem.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__Force__Gravity.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__Function.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__GeneralForceSubsystem.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__Integrator.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__InverseTransform_T_double_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__MatT_3_4_double_3_1_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__MatT_4_4_double_4_1_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__MultibodySystem.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__SimbodyMatterSubsystem.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__System.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__Visualizer.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__Visualizer__InputSilo.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SimTK__Xml__Element.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SmoothSegmentedFunction.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__ostream.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__reverse_iteratorT_double_const_p_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__reverse_iteratorT_OpenSim__CoordinateReference_const_p_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__reverse_iteratorT_SimTK__DecorativeGeometry_const_p_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__reverse_iteratorT_SimTK__VecT_3_double_1_t_const_p_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__string.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__vectorT_int_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__vectorT_SimTK__Function_const_p_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_std__vectorT_SimTK__VecT_3_double_1_t_t.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_Storage.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_String.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_SystemEventTriggerIndex.cs" />
+    <Compile Include="CSharpOpenSim\SWIGTYPE_p_Transform.cs" />
+    <Compile Include="CSharpOpenSim\SystemEnergyProbe.cs" />
+    <Compile Include="CSharpOpenSim\TendonForceLengthCurve.cs" />
+    <Compile Include="CSharpOpenSim\Thelen2003Muscle.cs" />
+    <Compile Include="CSharpOpenSim\Tool.cs" />
+    <Compile Include="CSharpOpenSim\TorqueActuator.cs" />
+    <Compile Include="CSharpOpenSim\TrackingTask.cs" />
+    <Compile Include="CSharpOpenSim\Transform.cs" />
+    <Compile Include="CSharpOpenSim\TransformAxis.cs" />
+    <Compile Include="CSharpOpenSim\TrueType.cs" />
+    <Compile Include="CSharpOpenSim\TrustMe.cs" />
+    <Compile Include="CSharpOpenSim\Umberger2010MuscleMetabolicsProbe.cs" />
+    <Compile Include="CSharpOpenSim\Umberger2010MuscleMetabolicsProbe_MetabolicMuscleParameter.cs" />
+    <Compile Include="CSharpOpenSim\Umberger2010MuscleMetabolicsProbe_MetabolicMuscleParameterSet.cs" />
+    <Compile Include="CSharpOpenSim\Units.cs" />
+    <Compile Include="CSharpOpenSim\UniversalJoint.cs" />
+    <Compile Include="CSharpOpenSim\Vec2.cs" />
+    <Compile Include="CSharpOpenSim\Vec3.cs" />
+    <Compile Include="CSharpOpenSim\Vec4.cs" />
+    <Compile Include="CSharpOpenSim\Vec6.cs" />
+    <Compile Include="CSharpOpenSim\Vector.cs" />
+    <Compile Include="CSharpOpenSim\VectorBaseDouble.cs" />
+    <Compile Include="CSharpOpenSim\VectorOfSpatialVec.cs" />
+    <Compile Include="CSharpOpenSim\VectorOfVec3.cs" />
+    <Compile Include="CSharpOpenSim\VisibleObject.cs" />
+    <Compile Include="CSharpOpenSim\WeldConstraint.cs" />
+    <Compile Include="CSharpOpenSim\WeldJoint.cs" />
+    <Compile Include="CSharpOpenSim\WrapCylinder.cs" />
+    <Compile Include="CSharpOpenSim\WrapCylinderObst.cs" />
+    <Compile Include="CSharpOpenSim\WrapDoubleCylinderObst.cs" />
+    <Compile Include="CSharpOpenSim\WrapEllipsoid.cs" />
+    <Compile Include="CSharpOpenSim\WrapObject.cs" />
+    <Compile Include="CSharpOpenSim\WrapObjectSet.cs" />
+    <Compile Include="CSharpOpenSim\WrapSphere.cs" />
+    <Compile Include="CSharpOpenSim\WrapSphereObst.cs" />
+    <Compile Include="CSharpOpenSim\WrapTorus.cs" />
+    <Compile Include="CSharpOpenSim\XYFunctionInterface.cs" />
+    <Compile Include="CSharpOpenSim\XYPoint.cs" />
+    <Compile Include="DicomDecoder.cs" />
+    <Compile Include="DicomDictionary.cs" />
+    <Compile Include="EllipseFit.cs" />
+    <Compile Include="Ellipse_Point.cs" />
+    <Compile Include="EosImage.cs" />
+    <Compile Include="EosSpace.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManualImportEOSimages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManualImportEOSimages.designer.cs">
+      <DependentUpon>frmManualImportEOSimages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelVisualization\frmAttachMarkerToModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelVisualization\frmAttachMarkerToModel.Designer.cs">
+      <DependentUpon>frmAttachMarkerToModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelVisualization\frmCalculateDynamicLandmarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelVisualization\frmCalculateDynamicLandmarks.Designer.cs">
+      <DependentUpon>frmCalculateDynamicLandmarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelVisualization\frmDebugOsimAndVTK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelVisualization\frmDebugOsimAndVTK.Designer.cs">
+      <DependentUpon>frmDebugOsimAndVTK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelVisualization\frmFundamentalModelComponentProp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelVisualization\frmFundamentalModelComponentProp.Designer.cs">
+      <DependentUpon>frmFundamentalModelComponentProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelVisualization\frmUpdateMuscleAndCP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelVisualization\frmUpdateMuscleAndCP.Designer.cs">
+      <DependentUpon>frmUpdateMuscleAndCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelVisualization\OsimBodyProperty.cs" />
+    <Compile Include="ModelVisualization\OsimControlPointProperty.cs" />
+    <Compile Include="ModelVisualization\OsimForceProperty.cs" />
+    <Compile Include="ModelVisualization\OsimGeometryProperty.cs" />
+    <Compile Include="ModelVisualization\OsimGroupElement.cs" />
+    <Compile Include="ModelVisualization\OsimJointCoordinateProperty.cs" />
+    <Compile Include="ModelVisualization\OsimJointProperty.cs" />
+    <Compile Include="ModelVisualization\OsimMarkerProperty.cs" />
+    <Compile Include="ModelVisualization\OsimModelProperty.cs" />
+    <Compile Include="ModelVisualization\OsimMuscleActuatorLineProperty.cs" />
+    <Compile Include="ModelVisualization\SimModelVisualization.cs" />
+    <Compile Include="osim\AbstractProperty.cs" />
+    <Compile Include="osim\AbstractTool.cs" />
+    <Compile Include="osim\ActivationFiberLengthMuscle.cs" />
+    <Compile Include="osim\ActivationFiberLengthMuscle_Deprecated.cs" />
+    <Compile Include="osim\ActiveForceLengthCurve.cs" />
+    <Compile Include="osim\Actuation.cs" />
+    <Compile Include="osim\Actuator.cs" />
+    <Compile Include="osim\ActuatorPowerProbe.cs" />
+    <Compile Include="osim\Actuator_.cs" />
+    <Compile Include="osim\Analysis.cs" />
+    <Compile Include="osim\AnalysisSet.cs" />
+    <Compile Include="osim\AnalyticCylinder.cs" />
+    <Compile Include="osim\AnalyticEllipsoid.cs" />
+    <Compile Include="osim\AnalyticGeometry.cs" />
+    <Compile Include="osim\AnalyticSphere.cs" />
+    <Compile Include="osim\AnalyticTorus.cs" />
+    <Compile Include="osim\AnalyzeTool.cs" />
+    <Compile Include="osim\ArrayOfStrings.cs" />
+    <Compile Include="osim\ArrowGeometry.cs" />
+    <Compile Include="osim\BallJoint.cs" />
+    <Compile Include="osim\Body.cs" />
+    <Compile Include="osim\BodyKinematics.cs" />
+    <Compile Include="osim\BodyScale.cs" />
+    <Compile Include="osim\BodyScaleSet.cs" />
+    <Compile Include="osim\BodySet.cs" />
+    <Compile Include="osim\BushingForce.cs" />
+    <Compile Include="osim\ClutchedPathSpring.cs" />
+    <Compile Include="osim\CMC.cs" />
+    <Compile Include="osim\CMCTool.cs" />
+    <Compile Include="osim\CMC_Joint.cs" />
+    <Compile Include="osim\CMC_Point.cs" />
+    <Compile Include="osim\CMC_Task.cs" />
+    <Compile Include="osim\CMC_TaskSet.cs" />
+    <Compile Include="osim\ConditionalPathPoint.cs" />
+    <Compile Include="osim\Constant.cs" />
+    <Compile Include="osim\ConstantDistanceConstraint.cs" />
+    <Compile Include="osim\Constraint.cs" />
+    <Compile Include="osim\ConstraintSet.cs" />
+    <Compile Include="osim\ContactGeometry.cs" />
+    <Compile Include="osim\ContactGeometrySet.cs" />
+    <Compile Include="osim\ContactHalfSpace.cs" />
+    <Compile Include="osim\ContactMesh.cs" />
+    <Compile Include="osim\ContactSphere.cs" />
+    <Compile Include="osim\Control.cs" />
+    <Compile Include="osim\ControlConstant.cs" />
+    <Compile Include="osim\Controller.cs" />
+    <Compile Include="osim\ControlLinear.cs" />
+    <Compile Include="osim\ControlLinearNode.cs" />
+    <Compile Include="osim\ControlSet.cs" />
+    <Compile Include="osim\ControlSetController.cs" />
+    <Compile Include="osim\Coordinate.cs" />
+    <Compile Include="osim\CoordinateActuator.cs" />
+    <Compile Include="osim\CoordinateCouplerConstraint.cs" />
+    <Compile Include="osim\CoordinateLimitForce.cs" />
+    <Compile Include="osim\CoordinateSet.cs" />
+    <Compile Include="osim\CorrectionController.cs" />
+    <Compile Include="osim\CustomJoint.cs" />
+    <Compile Include="osim\Delp1990Muscle_Deprecated.cs" />
+    <Compile Include="osim\ElasticFoundationForce.cs" />
+    <Compile Include="osim\EllipsoidJoint.cs" />
+    <Compile Include="osim\Exception.cs" />
+    <Compile Include="osim\ExpressionBasedBushingForce.cs" />
+    <Compile Include="osim\ExpressionBasedCoordinateForce.cs" />
+    <Compile Include="osim\ExpressionBasedPointToPointForce.cs" />
+    <Compile Include="osim\ExternalForce.cs" />
+    <Compile Include="osim\ExternalLoads.cs" />
+    <Compile Include="osim\FiberCompressiveForceCosPennationCurve.cs" />
+    <Compile Include="osim\FiberCompressiveForceLengthCurve.cs" />
+    <Compile Include="osim\FiberForceLengthCurve.cs" />
+    <Compile Include="osim\Force.cs" />
+    <Compile Include="osim\ForceReporter.cs" />
+    <Compile Include="osim\ForceSet.cs" />
+    <Compile Include="osim\ForceVelocityCurve.cs" />
+    <Compile Include="osim\ForceVelocityInverseCurve.cs" />
+    <Compile Include="osim\ForwardTool.cs" />
+    <Compile Include="osim\FreeJoint.cs" />
+    <Compile Include="osim\Function.cs" />
+    <Compile Include="osim\FunctionAdapter.cs" />
+    <Compile Include="osim\FunctionBasedBushingForce.cs" />
+    <Compile Include="osim\FunctionSet.cs" />
+    <Compile Include="osim\GCVSpline.cs" />
+    <Compile Include="osim\GCVSplineSet.cs" />
+    <Compile Include="osim\GenericModelMaker.cs" />
+    <Compile Include="osim\Geometry.cs" />
+    <Compile Include="osim\GeometryPath.cs" />
+    <Compile Include="osim\GimbalJoint.cs" />
+    <Compile Include="osim\HuntCrossleyForce.cs" />
+    <Compile Include="osim\IKCoordinateTask.cs" />
+    <Compile Include="osim\IKMarkerTask.cs" />
+    <Compile Include="osim\IKTask.cs" />
+    <Compile Include="osim\IKTaskSet.cs" />
+    <Compile Include="osim\InducedAccelerations.cs" />
+    <Compile Include="osim\InverseKinematicsTool.cs" />
+    <Compile Include="osim\IO.cs" />
+    <Compile Include="osim\Joint.cs" />
+    <Compile Include="osim\JointInternalPowerProbe.cs" />
+    <Compile Include="osim\JointReaction.cs" />
+    <Compile Include="osim\JointSet.cs" />
+    <Compile Include="osim\Kinematics.cs" />
+    <Compile Include="osim\Ligament.cs" />
+    <Compile Include="osim\LinearFunction.cs" />
+    <Compile Include="osim\LineGeometry.cs" />
+    <Compile Include="osim\Manager.cs" />
+    <Compile Include="osim\Marker.cs" />
+    <Compile Include="osim\MarkerData.cs" />
+    <Compile Include="osim\MarkerPair.cs" />
+    <Compile Include="osim\MarkerPairSet.cs" />
+    <Compile Include="osim\MarkerPlacer.cs" />
+    <Compile Include="osim\MarkerSet.cs" />
+    <Compile Include="osim\MarkersReference.cs" />
+    <Compile Include="osim\MarkerWeight.cs" />
+    <Compile Include="osim\Measurement.cs" />
+    <Compile Include="osim\MeasurementSet.cs" />
+    <Compile Include="osim\Millard2012AccelerationMuscle.cs" />
+    <Compile Include="osim\Millard2012EquilibriumMuscle.cs" />
+    <Compile Include="osim\Model.cs" />
+    <Compile Include="osim\ModelComponent.cs" />
+    <Compile Include="osim\ModelComponentSetOfBody.cs" />
+    <Compile Include="osim\ModelDisplayHints.cs" />
+    <Compile Include="osim\ModelScaler.cs" />
+    <Compile Include="osim\ModelVisualizer.cs" />
+    <Compile Include="osim\MomentArmSolver.cs" />
+    <Compile Include="osim\MovingPathPoint.cs" />
+    <Compile Include="osim\MultiplierFunction.cs" />
+    <Compile Include="osim\Muscle.cs" />
+    <Compile Include="osim\MuscleActiveFiberPowerProbe.cs" />
+    <Compile Include="osim\MuscleAnalysis.cs" />
+    <Compile Include="osim\MuscleFirstOrderActivationDynamicModel.cs" />
+    <Compile Include="osim\MuscleFixedWidthPennationModel.cs" />
+    <Compile Include="osim\MuscleStateTrackingTask.cs" />
+    <Compile Include="osim\Object.cs" />
+    <Compile Include="osim\ObjectGroup.cs" />
+    <Compile Include="osim\osimInstantiator.cs" />
+    <Compile Include="osim\osimwrap.cs" />
+    <Compile Include="osim\osimwrapPINVOKE.cs" />
+    <Compile Include="osim\PathActuator.cs" />
+    <Compile Include="osim\PathPoint.cs" />
+    <Compile Include="osim\PathPointSet.cs" />
+    <Compile Include="osim\PathSpring.cs" />
+    <Compile Include="osim\PathWrap.cs" />
+    <Compile Include="osim\PathWrapPoint.cs" />
+    <Compile Include="osim\PathWrapSet.cs" />
+    <Compile Include="osim\PiecewiseLinearFunction.cs" />
+    <Compile Include="osim\PinJoint.cs" />
+    <Compile Include="osim\PointActuator.cs" />
+    <Compile Include="osim\PointConstraint.cs" />
+    <Compile Include="osim\PointKinematics.cs" />
+    <Compile Include="osim\PointOnLineConstraint.cs" />
+    <Compile Include="osim\PointToPointActuator.cs" />
+    <Compile Include="osim\PointToPointSpring.cs" />
+    <Compile Include="osim\PolyhedralGeometry.cs" />
+    <Compile Include="osim\PolynomialFunction.cs" />
+    <Compile Include="osim\PrescribedController.cs" />
+    <Compile Include="osim\PrescribedForce.cs" />
+    <Compile Include="osim\Probe.cs" />
+    <Compile Include="osim\ProbeReporter.cs" />
+    <Compile Include="osim\ProbeSet.cs" />
+    <Compile Include="osim\PropertyBool.cs" />
+    <Compile Include="osim\PropertyBoolArray.cs" />
+    <Compile Include="osim\PropertyDbl.cs" />
+    <Compile Include="osim\PropertyDblArray.cs" />
+    <Compile Include="osim\PropertyGroup.cs" />
+    <Compile Include="osim\PropertyInt.cs" />
+    <Compile Include="osim\PropertyIntArray.cs" />
+    <Compile Include="osim\PropertyObj.cs" />
+    <Compile Include="osim\PropertySet.cs" />
+    <Compile Include="osim\PropertyStr.cs" />
+    <Compile Include="osim\PropertyStrArray.cs" />
+    <Compile Include="osim\PropertyTable.cs" />
+    <Compile Include="osim\Property_Deprecated.cs" />
+    <Compile Include="osim\RigidTendonMuscle.cs" />
+    <Compile Include="osim\Scale.cs" />
+    <Compile Include="osim\ScaleSet.cs" />
+    <Compile Include="osim\ScaleTool.cs" />
+    <Compile Include="osim\Schutte1993Muscle_Deprecated.cs" />
+    <Compile Include="osim\SegmentedQuinticBezierToolkit.cs" />
+    <Compile Include="osim\SetOfBody.cs" />
+    <Compile Include="osim\SimbodyEngine.cs" />
+    <Compile Include="osim\SimmSpline.cs" />
+    <Compile Include="osim\Sine.cs" />
+    <Compile Include="osim\SliderJoint.cs" />
+    <Compile Include="osim\SMC_Joint.cs" />
+    <Compile Include="osim\SmoothSegmentedFunction.cs" />
+    <Compile Include="osim\SmoothSegmentedFunctionFactory.cs" />
+    <Compile Include="osim\Solver.cs" />
+    <Compile Include="osim\SpatialTransform.cs" />
+    <Compile Include="osim\SpringGeneralizedForce.cs" />
+    <Compile Include="osim\StatesReporter.cs" />
+    <Compile Include="osim\StateTrackingTask.cs" />
+    <Compile Include="osim\StateVector.cs" />
+    <Compile Include="osim\StaticOptimization.cs" />
+    <Compile Include="osim\StepFunction.cs" />
+    <Compile Include="osim\Storage.cs" />
+    <Compile Include="osim\StorageInterface.cs" />
+    <Compile Include="osim\SWIGTYPE_p_a_3__double.cs" />
+    <Compile Include="osim\SWIGTYPE_p_bool.cs" />
+    <Compile Include="osim\SWIGTYPE_p_DisplayGeometry__DisplayPreference.cs" />
+    <Compile Include="osim\SWIGTYPE_p_double.cs" />
+    <Compile Include="osim\SWIGTYPE_p_int.cs" />
+    <Compile Include="osim\SWIGTYPE_p_MarkerFrame.cs" />
+    <Compile Include="osim\SWIGTYPE_p_ObjectGroup.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayPtrsT_OpenSim__ControlLinearNode_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayPtrsT_OpenSim__Object_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayPtrsT_OpenSim__PropertyGroup_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayPtrsT_OpenSim__Property_Deprecated_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayPtrsT_OpenSim__Storage_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_bool_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_double_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_int_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_OpenSim__ArrayT_double_t_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_OpenSim__Object_p_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_OpenSim__PathPoint_p_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_OpenSim__PointForceDirection_p_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_OpenSim__StateVector_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_SimTK__SystemYIndex_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ArrayT_SimTK__Vec3_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ComponentSet.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ControllerSet.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ElasticFoundationForce__ContactParameters.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__ElasticFoundationForce__ContactParametersSet.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__GeometrySet.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__HuntCrossleyForce__ContactParameters.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__HuntCrossleyForce__ContactParametersSet.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__OptimizationTarget.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__PropertyT_std__string_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__SetT_OpenSim__Actuator_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__SetT_OpenSim__MarkerWeight_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__SetT_OpenSim__Muscle_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_OpenSim__VectorFunctionForActuators.cs" />
+    <Compile Include="osim\SWIGTYPE_p_p_char.cs" />
+    <Compile Include="osim\SWIGTYPE_p_p_double.cs" />
+    <Compile Include="osim\SWIGTYPE_p_p_OpenSim__Storage.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Array_T_double_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Array_T_int_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Array_T_SimTK__DecorativeGeometry_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Array_T_SimTK__Spline_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Array_T_SimTK__Vec3_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Array_T_SimTK__Vector_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Array_T_std__string_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__ContactGeometry.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__DefaultGeometry.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__DefaultSystemSubsystem.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Force__Gravity.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Function.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__GeneralForceSubsystem.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Inertia.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Integrator.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__MassProperties.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Mat33.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Matrix.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__MobilizedBodyIndex.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__MultibodySystem.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Optimizer.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Real.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__SimbodyMatterSubsystem.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__SpatialVec.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Spline.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__State.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__System.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__SystemYIndex.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Transform.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Vec2.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Vec3.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Vec4.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Vec6.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Vector.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Vector_T_SimTK__SpatialVec_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Vector_T_SimTK__Vec3_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Visualizer.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Visualizer__InputSilo.cs" />
+    <Compile Include="osim\SWIGTYPE_p_SimTK__Xml__Element.cs" />
+    <Compile Include="osim\SWIGTYPE_p_StateVector.cs" />
+    <Compile Include="osim\SWIGTYPE_p_std__ostream.cs" />
+    <Compile Include="osim\SWIGTYPE_p_std__string.cs" />
+    <Compile Include="osim\SWIGTYPE_p_std__vectorT_int_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_std__vectorT_SimTK__Function_const_p_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_std__vectorT_SimTK__Vec3_t.cs" />
+    <Compile Include="osim\SWIGTYPE_p_void.cs" />
+    <Compile Include="osim\SWIGTYPE_p_Xml__Element.cs" />
+    <Compile Include="osim\TendonForceLengthCurve.cs" />
+    <Compile Include="osim\Thelen2003Muscle.cs" />
+    <Compile Include="osim\Thelen2003Muscle_Deprecated.cs" />
+    <Compile Include="osim\Tool.cs" />
+    <Compile Include="osim\TorqueActuator.cs" />
+    <Compile Include="osim\TrackingController.cs" />
+    <Compile Include="osim\TrackingTask.cs" />
+    <Compile Include="osim\TransformAxis.cs" />
+    <Compile Include="osim\Units.cs" />
+    <Compile Include="osim\UniversalJoint.cs" />
+    <Compile Include="osim\VisibleObject.cs" />
+    <Compile Include="osim\WeldConstraint.cs" />
+    <Compile Include="osim\WeldJoint.cs" />
+    <Compile Include="osim\WrapCylinder.cs" />
+    <Compile Include="osim\WrapCylinderObst.cs" />
+    <Compile Include="osim\WrapDoubleCylinderObst.cs" />
+    <Compile Include="osim\WrapEllipsoid.cs" />
+    <Compile Include="osim\WrapObject.cs" />
+    <Compile Include="osim\WrapObjectSet.cs" />
+    <Compile Include="osim\WrapResult.cs" />
+    <Compile Include="osim\WrapSphere.cs" />
+    <Compile Include="osim\WrapSphereObst.cs" />
+    <Compile Include="osim\WrapTorus.cs" />
+    <Compile Include="osim\XMLDocument.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkeletalModeling\2DMeasurementsWorkpanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SkeletalModeling\2DMeasurementsWorkpanel.Designer.cs">
+      <DependentUpon>2DMeasurementsWorkpanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmComponentProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmComponentProperty.Designer.cs">
+      <DependentUpon>frmComponentProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmImageAnalysis_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmImageAnalysis_new.Designer.cs">
+      <DependentUpon>frmImageAnalysis_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmLogsAndMessages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmLogsAndMessages.Designer.cs">
+      <DependentUpon>frmLogsAndMessages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmModelTemplates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmModelTemplates.Designer.cs">
+      <DependentUpon>frmModelTemplates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmSkeletalModelingPreferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SkeletalModeling\frmSkeletalModelingPreferences.Designer.cs">
+      <DependentUpon>frmSkeletalModelingPreferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkeletalModeling\UC_3DModelingWorkpanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SkeletalModeling\UC_3DModelingWorkpanel.Designer.cs">
+      <DependentUpon>UC_3DModelingWorkpanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkeletalModeling\UC_measurementsMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SkeletalModeling\UC_measurementsMain.Designer.cs">
+      <DependentUpon>UC_measurementsMain.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManualImportEOSimages.resx">
+      <DependentUpon>frmManualImportEOSimages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelVisualization\frmAttachMarkerToModel.resx">
+      <DependentUpon>frmAttachMarkerToModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelVisualization\frmCalculateDynamicLandmarks.resx">
+      <DependentUpon>frmCalculateDynamicLandmarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelVisualization\frmDebugOsimAndVTK.resx">
+      <DependentUpon>frmDebugOsimAndVTK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelVisualization\frmFundamentalModelComponentProp.resx">
+      <DependentUpon>frmFundamentalModelComponentProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelVisualization\frmUpdateMuscleAndCP.resx">
+      <DependentUpon>frmUpdateMuscleAndCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SkeletalModeling\2DMeasurementsWorkpanel.resx">
+      <DependentUpon>2DMeasurementsWorkpanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkeletalModeling\frmComponentProperty.resx">
+      <DependentUpon>frmComponentProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkeletalModeling\frmImageAnalysis_new.aa.resx">
+      <DependentUpon>frmImageAnalysis_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkeletalModeling\frmImageAnalysis_new.resx">
+      <DependentUpon>frmImageAnalysis_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkeletalModeling\frmLogsAndMessages.resx">
+      <DependentUpon>frmLogsAndMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkeletalModeling\frmModelTemplates.resx">
+      <DependentUpon>frmModelTemplates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkeletalModeling\frmSkeletalModelingPreferences.resx">
+      <DependentUpon>frmSkeletalModelingPreferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkeletalModeling\UC_3DModelingWorkpanel.resx">
+      <DependentUpon>UC_3DModelingWorkpanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkeletalModeling\UC_measurementsMain.resx">
+      <DependentUpon>UC_measurementsMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="SimpleITK_LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License-LGPL.txt" />
+    <Content Include="ModelVisualization\AppData_UpdateInstructions.txt" />
+    <Content Include="Resources\0724884440e8ddd0896ff557b75a222a.gif" />
+    <Content Include="Resources\1473771884_eye-open.png" />
+    <Content Include="Resources\1473777052_Add.png" />
+    <Content Include="Resources\27196577-f9402452-51d8-11e7-987f-43d48bb49c18.png" />
+    <Content Include="Resources\abstract_logo_6822750.jpg_256x256.png" />
+    <Content Include="Resources\AddIcon.png" />
+    <Content Include="Resources\Add_Blue_Edit2.png" />
+    <Content Include="Resources\Add_Blue_edited.png" />
+    <Content Include="Resources\AngleCobbConvention.PNG" />
+    <Content Include="Resources\angle_1.png" />
+    <Content Include="Resources\angle_2.png" />
+    <Content Include="Resources\ArrowDownGreen.png" />
+    <Content Include="Resources\ArrowDownRed.png" />
+    <Content Include="Resources\arrowLeft.png" />
+    <Content Include="Resources\arrowRight.png" />
+    <Content Include="Resources\arrow_down_White.png" />
+    <Content Include="Resources\Arrow_Down_White_2.png" />
+    <Content Include="Resources\Arrow_Icon.png" />
+    <Content Include="Resources\arrow_icon2.png" />
+    <Content Include="Resources\Arrow_Up_White_2.png" />
+    <Content Include="Resources\At_sign.svg.png" />
+    <Content Include="Resources\AutomaticIcon.png" />
+    <Content Include="Resources\Banner_SWSNew.PNG" />
+    <Content Include="Resources\Banner_SWSNewLong.PNG" />
+    <Content Include="Resources\Biometrics_icon.png" />
+    <Content Include="Resources\bone-256.png" />
+    <Content Include="Resources\BringToFrontHS.png" />
+    <Content Include="Resources\Brush.png" />
+    <Content Include="Resources\calculator.png" />
+    <Content Include="Resources\calendarIcon.png" />
+    <Content Include="Resources\cancel.png" />
+    <Content Include="Resources\CardiacCTIcon.png" />
+    <Content Include="Resources\CausalityMC_Icon_White.png" />
+    <Content Include="Resources\CenterIcon.png" />
+    <Content Include="Resources\checkboxWhiteChecked.png" />
+    <Content Include="Resources\close_red.png" />
+    <Content Include="Resources\cloud_download.png" />
+    <Content Include="Resources\cobb-angle.jpg" />
+    <Content Include="Resources\Collaborators_IconGray.png" />
+    <Content Include="Resources\ColorFill.png" />
+    <Content Include="Resources\ColorHS.png" />
+    <Content Include="Resources\Color_font.png" />
+    <Content Include="Resources\Color_fontHS.png" />
+    <Content Include="Resources\compare.png" />
+    <Content Include="Resources\comparedata.png" />
+    <Content Include="Resources\ConsentIcon.png" />
+    <Content Include="Resources\CreatedByOverbergh.png" />
+    <Content Include="Resources\CreateSubSPecimenIcon.png" />
+    <Content Include="Resources\CreateSubSPecimenIcon2.png" />
+    <Content Include="Resources\CT_icon.png" />
+    <Content Include="Resources\Curve.png" />
+    <Content Include="Resources\Custom-Icon-Design-Pretty-Office-5-Refresh.ico" />
+    <Content Include="Resources\cw22-cloud.jpg" />
+    <Content Include="Resources\DashboardIconBlue1.png" />
+    <Content Include="Resources\Dashboard_IconGray.png" />
+    <Content Include="Resources\DataSharing.png" />
+    <Content Include="Resources\DataSharingICON.png" />
+    <Content Include="Resources\dataTransfer.gif" />
+    <Content Include="Resources\delete.png" />
+    <Content Include="Resources\Delete_Blue_Edit2.png" />
+    <Content Include="Resources\Delete_Blue_Edited.png" />
+    <Content Include="Resources\delete_white.png" />
+    <Content Include="Resources\Distance.png" />
+    <Content Include="Resources\document-file-icon.png" />
+    <Content Include="Resources\DocumentVault_gray.png" />
+    <Content Include="Resources\DonationCardIconBlue.png" />
+    <Content Include="Resources\DonationCardIconBlue2.png" />
+    <Content Include="Resources\DoneIcon.bmp" />
+    <Content Include="Resources\DoneIconGreen.png" />
+    <Content Include="Resources\Dossier2.png" />
+    <Content Include="Resources\down-xxl.png" />
+    <Content Include="Resources\downloading.png" />
+    <Content Include="Resources\Download_Blue_Edit.png" />
+    <Content Include="Resources\Download_Blue_Edit2.png" />
+    <Content Include="Resources\dutch_icon.png" />
+    <Content Include="Resources\Edit_RedoHS.png" />
+    <Content Include="Resources\Edit_Single.png" />
+    <Content Include="Resources\Edit_UndoHS.png" />
+    <Content Include="Resources\Ellipse-Filled.png" />
+    <Content Include="Resources\Ellipse.png" />
+    <Content Include="Resources\Ellipse1.png" />
+    <Content Include="Resources\English_icon.png" />
+    <Content Include="Resources\Eraser.png" />
+    <Content Include="Resources\excel.ico" />
+    <Content Include="Resources\excel1.ico" />
+    <Content Include="Resources\excel_logo.png" />
+    <Content Include="Resources\Exit.png" />
+    <Content Include="Resources\exit_to_app_white_192x192.png" />
+    <Content Include="Resources\EyeDropper.png" />
+    <Content Include="Resources\eyeIcon.png" />
+    <Content Include="Resources\Eye_Icon_Blue.png" />
+    <Content Include="Resources\Eye_Icon_white.png" />
+    <Content Include="Resources\eye_white.png" />
+    <Content Include="Resources\Files-icon.png" />
+    <Content Include="Resources\FinischIcon.png" />
+    <Content Include="Resources\FocusIconWhite.png" />
+    <Content Include="Resources\folder-open-flat.png" />
+    <Content Include="Resources\folder_white.png" />
+    <Content Include="Resources\FontDialogHS.png" />
+    <Content Include="Resources\FontHS.png" />
+    <Content Include="Resources\FP.jpg" />
+    <Content Include="Resources\geodriehoek.png" />
+    <Content Include="Resources\GrabandReplace.png" />
+    <Content Include="Resources\Hand.png" />
+    <Content Include="Resources\HandR.png" />
+    <Content Include="Resources\Help_icon_blue.png" />
+    <Content Include="Resources\hip-icon.png" />
+    <Content Include="Resources\HipJoint.png" />
+    <Content Include="Resources\History.png" />
+    <Content Include="Resources\History2.png" />
+    <Content Include="Resources\History_icon_Blue.png" />
+    <Content Include="Resources\Home_iconGray.png" />
+    <Content Include="Resources\Icon-general-surgery.png" />
+    <Content Include="Resources\icon-unchecked.png" />
+    <Content Include="Resources\IconARclock.png" />
+    <Content Include="Resources\IconARcounterclock.png" />
+    <Content Include="Resources\IconDetails.png" />
+    <Content Include="Resources\IconDottedEllipse.png" />
+    <Content Include="Resources\IconMoveDown.png" />
+    <Content Include="Resources\IconMoveLeft.png" />
+    <Content Include="Resources\IconMoveRight.png" />
+    <Content Include="Resources\IconMoveUp.png" />
+    <Content Include="Resources\IconPencil.png" />
+    <Content Include="Resources\IconRotateLeft.png" />
+    <Content Include="Resources\IconRotateRight.png" />
+    <Content Include="Resources\Icon_V2_CheckedWhite.png" />
+    <Content Include="Resources\Icon_V2_UncheckedWhite.png" />
+    <Content Include="Resources\illustratieROM.png" />
+    <Content Include="Resources\imageSlide1.img_.1024.high_.jpg" />
+    <Content Include="Resources\imgDelete.png" />
+    <Content Include="Resources\imgSave.png" />
+    <Content Include="Resources\imgSearch.png" />
+    <Content Include="Resources\img_212213.png" />
+    <Content Include="Resources\info_white.png" />
+    <Content Include="Resources\InsertPictureHS.png" />
+    <Content Include="Resources\IORT.png" />
+    <Content Include="Resources\ItalicHS.png" />
+    <Content Include="Resources\knee-icon2.png" />
+    <Content Include="Resources\LandmarkBased.png" />
+    <Content Include="Resources\Line-Thick.png" />
+    <Content Include="Resources\Line-Thicker.png" />
+    <Content Include="Resources\Line-Thickest.png" />
+    <Content Include="Resources\Line-Thin.png" />
+    <Content Include="Resources\Line-Thinnest.png" />
+    <Content Include="Resources\Line.png" />
+    <Content Include="Resources\LineColorHS.png" />
+    <Content Include="Resources\Line_width_icon.png" />
+    <Content Include="Resources\LoadingCircle.gif" />
+    <Content Include="Resources\local-optimization2.png" />
+    <Content Include="Resources\lock2.png" />
+    <Content Include="Resources\lock32.png" />
+    <Content Include="Resources\Lock_White.png" />
+    <Content Include="Resources\lumbarLordosis.png" />
+    <Content Include="Resources\manual.png" />
+    <Content Include="Resources\measuring.png" />
+    <Content Include="Resources\Medicalreport_icon.png" />
+    <Content Include="Resources\Megaphone_Blue_icon.png" />
+    <Content Include="Resources\Megaphone_Blue_iconNoCross.png" />
+    <Content Include="Resources\Megaphone_icon.png" />
+    <Content Include="Resources\Megaphone_UNDO_icon.png" />
+    <Content Include="Resources\MessagesICON.png" />
+    <Content Include="Resources\Messages_IconGray.png" />
+    <Content Include="Resources\motiveBodyMarkersetTemplates.png" />
+    <Content Include="Resources\MRI_icon.png" />
+    <Content Include="Resources\newGroupPostIconStrip.PNG" />
+    <Content Include="Resources\notification-flat.png" />
+    <Content Include="Resources\ORCID_iD.svg.png" />
+    <Content Include="Resources\Organigram.png" />
+    <Content Include="Resources\Panning_icon.png" />
+    <Content Include="Resources\paper-background-clipart.jpg" />
+    <Content Include="Resources\Paper-Plane-512.png" />
+    <Content Include="Resources\passerIcon.png" />
+    <Content Include="Resources\Patient.ico" />
+    <Content Include="Resources\Patient.png" />
+    <Content Include="Resources\PelvicAngles.png" />
+    <Content Include="Resources\Pencil.png" />
+    <Content Include="Resources\Pencil_Blue.png" />
+    <Content Include="Resources\Pencil_BlueDarker.png" />
+    <Content Include="Resources\Pencil_SImple_IconBlue.png" />
+    <Content Include="Resources\Pen_icon.png" />
+    <Content Include="Resources\person.png" />
+    <Content Include="Resources\pic1-260x300.png" />
+    <Content Include="Resources\plus_white.png" />
+    <Content Include="Resources\POINT13.ICO" />
+    <Content Include="Resources\Pointer.png" />
+    <Content Include="Resources\PointerHS.png" />
+    <Content Include="Resources\Polygon.png" />
+    <Content Include="Resources\PrintAddressEnvelopeIconBlue.png" />
+    <Content Include="Resources\Print_icon_Blue.png" />
+    <Content Include="Resources\processicon.png" />
+    <Content Include="Resources\profilepicture.png" />
+    <Content Include="Resources\project_icon.png" />
+    <Content Include="Resources\ProtocolDeviationBlue.png" />
+    <Content Include="Resources\qr-code-icon-.jpg" />
+    <Content Include="Resources\qr-code-icon2.jpg" />
+    <Content Include="Resources\Recruitment_icon.png" />
+    <Content Include="Resources\Rectangle-Filled.png" />
+    <Content Include="Resources\Rectangle.cur" />
+    <Content Include="Resources\Rectangle.png" />
+    <Content Include="Resources\Redact_Icon_blue.png" />
+    <Content Include="Resources\refresh-icon.png" />
+    <Content Include="Resources\Refresh_Blue_Edit2.png" />
+    <Content Include="Resources\refresh_Blue_edited.png" />
+    <Content Include="Resources\RelationshipsHS.png" />
+    <Content Include="Resources\RemoveLink_2.png" />
+    <Content Include="Resources\RemoveLink_Icon.png" />
+    <Content Include="Resources\resetPanning_Icon.png" />
+    <Content Include="Resources\ResetView.png" />
+    <Content Include="Resources\reset_white.png" />
+    <Content Include="Resources\return.png" />
+    <Content Include="Resources\returnBlue.png" />
+    <Content Include="Resources\return_Blue_Edit2.png" />
+    <Content Include="Resources\Return_Blue_edited.png" />
+    <Content Include="Resources\return_icon_white.png" />
+    <Content Include="Resources\RotateLeft.png" />
+    <Content Include="Resources\RotateReset.png" />
+    <Content Include="Resources\RotateRight.png" />
+    <Content Include="Resources\rss_feed_white_144x144.png" />
+    <Content Include="Resources\run-icon.png" />
+    <Content Include="Resources\RXopenfile.png" />
+    <Content Include="Resources\save.png" />
+    <Content Include="Resources\Save_Blue_edited2.png" />
+    <Content Include="Resources\save_white.png" />
+    <Content Include="Resources\search-icon-Blue.png" />
+    <Content Include="Resources\Search.ico" />
+    <Content Include="Resources\search.png" />
+    <Content Include="Resources\search_white.png" />
+    <Content Include="Resources\Select.png" />
+    <Content Include="Resources\Select2.png" />
+    <Content Include="Resources\SendToBackHS.png" />
+    <Content Include="Resources\sensitive-personal-data.png" />
+    <Content Include="Resources\Settings.png" />
+    <Content Include="Resources\settings_white.png" />
+    <Content Include="Resources\sharingICON.png" />
+    <Content Include="Resources\ShoulderIcon.png" />
+    <Content Include="Resources\ShowInCalendar_Icon.png" />
+    <Content Include="Resources\ShowNotInCalendar.png" />
+    <Content Include="Resources\SignBlueIcon.png" />
+    <Content Include="Resources\skeleton.png" />
+    <Content Include="Resources\Slider_Icon_White.png" />
+    <Content Include="Resources\Smile-Clipart.jpg" />
+    <Content Include="Resources\SpecimenTrackerIcon.png" />
+    <Content Include="Resources\Spine-transparent.png" />
+    <Content Include="Resources\SpineIcon.png" />
+    <Content Include="Resources\splash.png" />
+    <Content Include="Resources\Square.png" />
+    <Content Include="Resources\Statistics_IconGray.png" />
+    <Content Include="Resources\StudyDataICON.png" />
+    <Content Include="Resources\SubtaskChecklist_Blue.png" />
+    <Content Include="Resources\SubtaskChecklist_Blue2.png" />
+    <Content Include="Resources\SVA_image.jpg" />
+    <Content Include="Resources\switchCamera_Icon_Blue.png" />
+    <Content Include="Resources\SWS_databaseBanner.png" />
+    <Content Include="Resources\SWS_Database_IconButton.png" />
+    <Content Include="Resources\SWS_letters.png" />
+    <Content Include="Resources\SWS_letters2.ico" />
+    <Content Include="Resources\SWS_letters2.png" />
+    <Content Include="Resources\SWS_lettersVierkant.ico" />
+    <Content Include="Resources\SWS_LettersWIT.png" />
+    <Content Include="Resources\SWS_LettersWIT1.png" />
+    <Content Include="Resources\SWS_LettersWIT2.jpg" />
+    <Content Include="Resources\SWS_LettersWIT2.png" />
+    <Content Include="Resources\SWS_logo-2.ico" />
+    <Content Include="Resources\SWS_logo2.png" />
+    <Content Include="Resources\sws_logo2_YIW_icon.ico" />
+    <Content Include="Resources\SWS_logoNew.jpg" />
+    <Content Include="Resources\SWS_projectLogo.png" />
+    <Content Include="Resources\T1 SPI.jpg" />
+    <Content Include="Resources\TakeSpecimenPicture.png" />
+    <Content Include="Resources\TakeSpecimenPicture_blue.png" />
+    <Content Include="Resources\tape_measure_sewing1600.png" />
+    <Content Include="Resources\tempF.png" />
+    <Content Include="Resources\TempImage_Frontal-smaller.bmp" />
+    <Content Include="Resources\TempImage_Lateral-smaller.bmp" />
+    <Content Include="Resources\tenor.gif" />
+    <Content Include="Resources\TestImageFrontal_small.bmp" />
+    <Content Include="Resources\Text.png" />
+    <Content Include="Resources\Text1.png" />
+    <Content Include="Resources\thoracic-kyphosis.png" />
+    <Content Include="Resources\thorax_x_ray_folder.png" />
+    <Content Include="Resources\TODlogo01.bmp" />
+    <Content Include="Resources\TODlogo02.bmp" />
+    <Content Include="Resources\trajectory_Icongray.png" />
+    <Content Include="Resources\Unlock.png" />
+    <Content Include="Resources\unlock32.png" />
+    <Content Include="Resources\up-xxl.png" />
+    <Content Include="Resources\upload.png" />
+    <Content Include="Resources\user-id-icon.png" />
+    <Content Include="Resources\User-Profile.png" />
+    <Content Include="Resources\UZ-LEUVEN-logo_transparant.png" />
+    <Content Include="Resources\vitruvianman.bmp" />
+    <Content Include="Resources\waitAnimation.gif" />
+    <Content Include="Resources\WaitingRoomIconBLue.png" />
+    <Content Include="Resources\white-arrow-left.png" />
+    <Content Include="Resources\white-arrow-right-md.png" />
+    <Content Include="Resources\workshop_iconGray.png" />
+    <Content Include="Resources\WUK2.jpg" />
+    <Content Include="Resources\WUKandName.png" />
+    <Content Include="Resources\WUKandName2.png" />
+    <Content Include="Resources\Xray-Icon.png" />
+    <Content Include="Resources\yellow_notebook_paper_by_orangedotgreen.jpg" />
+    <Content Include="Resources\zandloper.png" />
+    <Content Include="Resources\ZoomHS.png" />
+    <Content Include="Resources\ZoomIn.png" />
+    <Content Include="Resources\ZoomInIcon.png" />
+    <Content Include="Resources\ZoomOut.png" />
+    <Content Include="Resources\ZoomOutIcon.png" />
+    <Content Include="Resources\ZoomReset.png" />
+    <Content Include="Resources\ZoomResetIcon.png" />
+    <Content Include="Resources\_lock.png" />
+    <Content Include="SimpleITKCSharpNative.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Ookii.Dialogs.5.0.1\build\Ookii.Dialogs.targets" Condition="Exists('..\packages\Ookii.Dialogs.5.0.1\build\Ookii.Dialogs.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Ookii.Dialogs.5.0.1\build\Ookii.Dialogs.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Ookii.Dialogs.5.0.1\build\Ookii.Dialogs.targets'))" />
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
+  </Target>
+  <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
+</Project>
