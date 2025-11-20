@@ -97,6 +97,7 @@ class Registration3DViewer(QMainWindow):
         # 3D markers for projection visualization
         self.marker_items = []  # List of 3D marker mesh items
         self.projection_items = {'frontal': None, 'lateral': None} # Items for projected outlines
+        self.landmark_items = [] # List of 3D landmark items loaded from file
         
         # Gizmo state
         self.gizmo = None
@@ -203,10 +204,13 @@ class Registration3DViewer(QMainWindow):
         
         return x_real, z_real
     
-    def image_pixel_to_3d(self, frontal_pixel_x, frontal_pixel_y, lateral_pixel_x, lateral_pixel_y):
+    def reconstruct_3d_from_pixels(self, frontal_pixel_x, frontal_pixel_y, lateral_pixel_x, lateral_pixel_y):
         """
-        Convert image pixel coordinates to 3D space coordinates
-        Complete pipeline: Pixel → MM → 3D reconstruction
+        Reconstruct 3D coordinates from pixel coordinates on the unprocessed images.
+        
+        Pipeline:
+        1. Unprocessed Pixel Space -> Centered MM Space (using PixelSpacing)
+        2. Centered MM Space -> 3D Space (using Inverse Projection)
         
         Args:
             frontal_pixel_x: X pixel coordinate on frontal image
@@ -220,41 +224,55 @@ class Registration3DViewer(QMainWindow):
         if self.frontal_image is None or self.lateral_image is None:
             return None
         
-        # Convert pixels to mm (measured from image center)
+        # Get dimensions of the unprocessed images
         frontal_h, frontal_w = self.frontal_image.shape[:2]
         lateral_h, lateral_w = self.lateral_image.shape[:2]
         
-        # X position on frontal image (from center, inverted because pixel 0 is at top)
+        # 1. Convert Pixels to MM (Centered)
+        
+        # Frontal X (Lateral-Medial axis)
+        # Pixel 0 is Left. Center is w/2.
+        # We want distance from center.
+        # Note: The original code used (w/2 - px), which gives + for Left, - for Right.
+        # We preserve this convention.
         m_frontal_x = self.convert_pixel_to_mm(
             (frontal_w / 2) - frontal_pixel_x, 
             self.pixel_spacing_frontal[0]
         )
         
-        # Y position on frontal image (from bottom, because Y is measured top-down)
+        # Frontal Y (Vertical axis)
+        # Pixel 0 is Top. Height is h.
+        # We want 0 at center, + Up, - Down.
+        # This matches create_image_plane which centers the image at Z=0.
         m_frontal_y = self.convert_pixel_to_mm(
-            frontal_h - frontal_pixel_y,
+            (frontal_h / 2) - frontal_pixel_y,
             self.pixel_spacing_frontal[1]
         )
         
-        # X position on lateral image
+        # Lateral X (Anterior-Posterior axis)
+        # Pixel 0 is Posterior? (depends on patient orientation).
+        # Original code used (w/2 - px).
         m_lateral_x = self.convert_pixel_to_mm(
             (lateral_w / 2) - lateral_pixel_x,
             self.pixel_spacing_lateral[0]
         )
         
-        # Y position on lateral image
+        # Lateral Y (Vertical axis)
         m_lateral_y = self.convert_pixel_to_mm(
-            lateral_h - lateral_pixel_y,
+            (lateral_h / 2) - lateral_pixel_y,
             self.pixel_spacing_lateral[1]
         )
         
-        # Inverse project to get 3D coordinates
+        # 2. Inverse Project to 3D
+        # We pass -m_frontal_x because the projection math expects X to be Right+, 
+        # but m_frontal_x is Left+.
         x_3d, z_3d = self.inverse_project_2d_to_3d(-m_frontal_x, m_lateral_x)
         
-        # Y coordinate is average of both images
+        # Y is average of both views
         y_3d = (m_frontal_y + m_lateral_y) / 2.0
         
-        # Return in EOS coordinate system
+        # Return in EOS coordinate system (x, y, z)
+        # Note: The original code returned (-x_3d, y_3d, z_3d)
         return -x_3d, y_3d, z_3d
     
     def coords_3d_to_image_pixel(self, x_3d, y_3d, z_3d):
@@ -349,6 +367,13 @@ class Registration3DViewer(QMainWindow):
         self.refresh_stl_btn = QPushButton("Refresh STL List")
         self.refresh_stl_btn.clicked.connect(self.load_stl_files)
         stl_layout.addWidget(self.refresh_stl_btn)
+        
+        # Toggle Landmarks Button
+        self.toggle_landmarks_btn = QPushButton("Toggle Landmarks")
+        self.toggle_landmarks_btn.setCheckable(True)
+        self.toggle_landmarks_btn.setChecked(True)
+        self.toggle_landmarks_btn.clicked.connect(self.toggle_landmarks)
+        stl_layout.addWidget(self.toggle_landmarks_btn)
         
         stl_group.setLayout(stl_layout)
         left_layout.addWidget(stl_group)
@@ -730,6 +755,9 @@ class Registration3DViewer(QMainWindow):
         
         # Load STL files for this patient
         self.load_stl_files()
+        
+        # Load Landmarks
+        self.load_landmarks()
         
         # Check if images were loaded
         if self.frontal_image is None and self.lateral_image is None:
@@ -1530,8 +1558,121 @@ class Registration3DViewer(QMainWindow):
         self.marker_items.clear()
         print("🧹 Cleared all 3D markers")
     
-    # Test projection method removed as requested
+    def load_landmarks(self):
+        """Load landmarks from _edited.txt or original .txt file and visualize them in 3D"""
+        # Clear existing landmarks
+        for item in self.landmark_items:
+            if item in self.view_3d.items:
+                self.view_3d.removeItem(item)
+        self.landmark_items = []
+        
+        if not self.current_patient:
+            return
 
+        eos_path = self.patient_combo.currentData()
+        if not eos_path:
+            return
+
+        # Find landmark file
+        landmark_file = None
+        
+        # Priority 1: _edited.txt
+        edited_files = [f for f in os.listdir(eos_path) if f.endswith('_edited.txt')]
+        if edited_files:
+            landmark_file = os.path.join(eos_path, edited_files[0])
+            print(f"Found edited landmark file: {landmark_file}")
+        else:
+            # Priority 2: Any other .txt file
+            txt_files = [f for f in os.listdir(eos_path) if f.endswith('.txt')]
+            if txt_files:
+                # Simple heuristic: take the first one.
+                landmark_file = os.path.join(eos_path, txt_files[0])
+                print(f"Found original landmark file: {landmark_file}")
+        
+        if not landmark_file:
+            print(f"No landmark file found in {eos_path}")
+            return
+        
+        try:
+            with open(landmark_file, 'r') as f:
+                lines = f.readlines()
+            
+            print(f"Parsing landmark file: {landmark_file}")
+            
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                
+                # Handle header line which might be malformed and contain data
+                # e.g. "X: ... (shared)T1,Plat_Sup_G,..."
+                if "X:" in line:
+                    if "(shared)" in line:
+                        parts = line.split("(shared)")
+                        if len(parts) > 1:
+                            line = parts[1] # Use the part after (shared)
+                        else:
+                            continue # Just header
+                    else:
+                        continue # Just header
+                
+                parts = line.strip().split(',')
+                if len(parts) < 5:
+                    continue
+                
+                # Format: Vertebra, PointName, px (lat X), py (front X), pz (shared Y)
+                vertebra = parts[0]
+                point_name = parts[1]
+                try:
+                    # Coordinates from file are in Unprocessed Pixel Space
+                    # (Scaled from 512x1024 to Original Size by postprocessing.py)
+                    px_lat = float(parts[2])  # Lateral X
+                    px_front = float(parts[3]) # Frontal X
+                    px_y = float(parts[4])    # Vertical (Y) - Shared
+                    
+                    # Reconstruct 3D position
+                    coords_3d = self.reconstruct_3d_from_pixels(px_front, px_y, px_lat, px_y)
+                    
+                    if coords_3d:
+                        x, y, z = coords_3d
+                        
+                        # Create 3D point (sphere)
+                        md = gl.MeshData.sphere(rows=8, cols=8, radius=2.0)
+                        colors = np.ones((md.vertexes().shape[0], 4))
+                        colors[:, 0] = 1.0 # R
+                        colors[:, 1] = 1.0 # G
+                        colors[:, 2] = 0.0 # B (Yellow)
+                        colors[:, 3] = 1.0 # Alpha
+                        md.setVertexColors(colors)
+                        
+                        mesh_item = gl.GLMeshItem(meshdata=md, smooth=True, shader='shaded', glOptions='opaque')
+                        
+                        # Apply transformation:
+                        # 1. Map Vertical (y) to Viewer Z (y -> z_final)
+                        # 2. Rotate 180 deg relative to previous (which was 90 deg CCW)
+                        #    Previous: (-z, x, y)
+                        #    New (Rotated 180 around Z): (z, -x, y)
+                        mesh_item.translate(z, -x, y)
+                        
+                        self.view_3d.addItem(mesh_item)
+                        self.landmark_items.append(mesh_item)
+                        
+                except ValueError:
+                    continue
+            
+            print(f"Loaded {len(self.landmark_items)} landmarks")
+            # Apply visibility based on toggle button
+            self.toggle_landmarks()
+            
+        except Exception as e:
+            print(f"Error loading landmarks: {e}")
+
+    def toggle_landmarks(self):
+        """Toggle visibility of landmark items"""
+        visible = self.toggle_landmarks_btn.isChecked()
+        for item in self.landmark_items:
+            item.setVisible(visible)
+        
 
 def main():
     """Standalone test function"""
