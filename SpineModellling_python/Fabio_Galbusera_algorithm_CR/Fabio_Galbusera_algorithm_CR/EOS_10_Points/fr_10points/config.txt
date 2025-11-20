@@ -1,0 +1,14 @@
+[data]
+#path: path of the folder containing the images
+path = C:\GBW_MyPrograms\Fabio_Galbusera_algorithm_CR\Fabio_Galbusera_algorithm_CR\patients\ASD-502\
+#format: tested: jpg, png, tif. All common formats should work (but DICOM is unsupported)
+format = jpg  
+
+[graphics]
+#widget_size: 600 is good for full HD (1920x1280); 300 should be fine for smaller displays. Increase for 4K.
+widget_size = 600 
+
+[internals]
+#padding: used for zooming out; do not change it
+padding = 500  
+
